@@ -25,15 +25,18 @@
       d3.json("test.json", function(error, graph) {
         if (error) throw error;
 
-        //var numCon = [{}];
+        var numCon = []; // set up to count number of cons source has
+
         var link = svg.append("g")
             .attr("class", "links")
           .selectAll("line")
           .data(graph.links)
           .enter().append("line")
-            .attr("stroke-width", function(d) { 
-              //numCon["source"] = 
+            .attr("stroke-width", function(d, i) { 
+              numCon[i] = d.source; //store source name in array
               return Math.sqrt(d.value); });
+
+        
 
         var node = svg.append("g")
             .attr("class", "nodes")
