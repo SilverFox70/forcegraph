@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {"id": "Bill", "group": 9},
+    {"id": "Joy", "group": 9},
+    {"id": "Julie", "group": 4},
+    {"id": "Joe", "group": 1},
+    {"id": "Steven", "group": 1},
+    {"id": "Annelise", "group": 4},
+    {"id": "Alex", "group": 1},
+    {"id": "Gloria", "group": 4},
+    {"id": "Ed", "group": 1},
+    {"id": "Judge", "group": 1},
+    {"id": "Patrik", "group": 1}
+  ],
+  "links": [
+    {"source": "Bill", "target": "Joy", "value": 10},
+    {"source": "Bill", "target": "Annelise", "value": 5},
+    {"source": "Bill", "target": "Julie", "value": 3},
+    {"source": "Bill", "target": "Gloria", "value": 3},
+    {"source": "Joy", "target": "Bill", "value": 10},
+    {"source": "Joy", "target": "Ed", "value": 6},
+    {"source": "Joy", "target": "Alex", "value": 4},
+    {"source": "Joy", "target": "Joe", "value": 7},
+    {"source": "Joy", "target": "Steven", "value": 5},
+    {"source": "Joy", "target": "Judge", "value": 7},
+    {"source": "Joy", "target": "Patrik", "value": 6},
+    {"source": "Julie", "target": "Joe", "value": 10},
+    {"source": "Joe", "target": "Julie", "value": 6},
+    {"source": "Steven", "target": "Annelise", "value": 10},
+    {"source": "Annelise", "target": "Steven", "value": 10},
+    {"source": "Annelise", "target": "Judge", "value": 6},
+    {"source": "Annelise", "target": "Patrik", "value": 2},
+    {"source": "Alex", "target": "Gloria", "value": 10},
+    {"source": "Gloria", "target": "Alex", "value": 10}
+  ]
+}
