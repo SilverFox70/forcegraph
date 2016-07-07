@@ -25,25 +25,38 @@
       d3.json("test.json", function(error, graph) {
         if (error) throw error;
 
-        var numCon = []; // set up to count number of cons source has
-
+        var numCon = new Object(); // set up to count number of cons source has
+        
         var link = svg.append("g")
             .attr("class", "links")
           .selectAll("line")
           .data(graph.links)
           .enter().append("line")
             .attr("stroke-width", function(d, i) { 
-              numCon[i] = d.source; //store source name in array
+              var sourceName = d.source;
+              var targetName = d.target;
+              if (isNaN(numCon[sourceName])){   //if not already registered, prime
+                numCon[sourceName] = 0;         //it to be a number
+              }
+              if (isNaN(numCon[targetName])){   //if not already registered, prime
+                numCon[targetName] = 0;         //it to be a number
+              }
+              numCon[sourceName] += 1; 
+              numCon[targetName] += 1;
+              console.log("name: " + sourceName + "\t " + numCon[sourceName]);
               return Math.sqrt(d.value); });
 
-        
+
 
         var node = svg.append("g")
             .attr("class", "nodes")
           .selectAll("circle")
           .data(graph.nodes)
           .enter().append("circle")
-            .attr("r", 5)
+            .attr("r", function(d) { 
+              console.log("radius:" + numCon[d.id] + " for " + d.id);
+              return numCon[d.id] + 2; 
+            })
             .attr("fill", function(d) { return color(d.group); })
             .call(d3.drag()
                 .on("start", dragstarted)
