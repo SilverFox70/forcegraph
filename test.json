@@ -2,17 +2,18 @@
   "nodes": [
     {"id": "Bill", "group": 9},
     {"id": "Joy", "group": 9},
-    {"id": "Julie", "group": 4},
+    {"id": "Julie", "group": 13},
     {"id": "Joe", "group": 1},
     {"id": "Steven", "group": 1},
-    {"id": "Annelise", "group": 4},
+    {"id": "Annelise", "group": 13},
     {"id": "Alex", "group": 1},
-    {"id": "Gloria", "group": 4},
+    {"id": "Gloria", "group": 13},
     {"id": "Ed", "group": 1},
     {"id": "Judge", "group": 1},
     {"id": "Patrik", "group": 1},
     {"id": "Liz", "group": 1},
-    {"id": "Cianna", "group": 1}
+    {"id": "Cianna", "group": 1},
+    {"id": "Leeza", "group": 13}
   ],
   "links": [
     {"source": "Bill", "target": "Joy", "value": 5},
@@ -41,6 +42,8 @@
     {"source": "Liz", "target": "Patrik", "value": 1},
     {"source": "Liz", "target": "Joy", "value": 1},
     {"source": "Patrik", "target": "Cianna", "value": 1},
-    {"source": "Joy", "target": "Cianna", "value": 1}
+    {"source": "Joy", "target": "Cianna", "value": 1},
+    {"source": "Leeza", "target": "Bill", "value": 1},
+    {"source": "Patrik", "target": "Leeza", "value": 1}
   ]
 }

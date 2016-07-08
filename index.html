@@ -15,6 +15,13 @@
           width = +svg.attr("width"),
           height = +svg.attr("height");
 
+      var container = svg.append("g");
+
+      zoom = d3.zoom()
+        .scaleExtent([1, 10])
+        .on("zoom", zoomed);
+
+
       var color = d3.scaleOrdinal(d3.schemeCategory20);
 
       var simulation = d3.forceSimulation()
@@ -27,44 +34,44 @@
 
         var numCon = new Object(); // set up to count number of cons source has
         
-        var link = svg.append("g")
+        var link = container.append("g")
             .attr("class", "links")
           .selectAll("line")
           .data(graph.links)
           .enter().append("line")
-            .attr("stroke-width", function(d, i) { 
-              var sourceName = d.source;
-              var targetName = d.target;
-              if (isNaN(numCon[sourceName])){   //if not already registered, prime
-                numCon[sourceName] = 0;         //it to be a number
-              }
-              if (isNaN(numCon[targetName])){   //if not already registered, prime
-                numCon[targetName] = 0;         //it to be a number
-              }
-              numCon[sourceName] += 1; 
-              numCon[targetName] += 1;
-              console.log("name: " + sourceName + "\t " + numCon[sourceName]);
-              return Math.sqrt(d.value); });
+          .attr("stroke-width", function(d, i) { 
+            var sourceName = d.source;
+            var targetName = d.target;
+            if (isNaN(numCon[sourceName])){   //if not already registered, prime
+              numCon[sourceName] = 0;         //it to be a number
+            }
+            if (isNaN(numCon[targetName])){   //if not already registered, prime
+              numCon[targetName] = 0;         //it to be a number
+            }
+            numCon[sourceName] += 1; 
+            numCon[targetName] += 1;
+            console.log("name: " + sourceName + "\t " + numCon[sourceName]);
+            return Math.sqrt(d.value); });
 
 
 
-        var node = svg.append("g")
-            .attr("class", "nodes")
+        var node = container.append("g")
+          .attr("class", "nodes")
           .selectAll("circle")
           .data(graph.nodes)
           .enter().append("circle")
-            .attr("r", function(d) { 
-              console.log("radius:" + numCon[d.id] + " for " + d.id);
-              return numCon[d.id] + 2; 
-            })
-            .attr("fill", function(d) { return color(d.group); })
-            .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended));
+          .attr("r", function(d) { 
+            console.log("radius:" + numCon[d.id] + " for " + d.id);
+            return numCon[d.id] + 2; 
+          })
+          .attr("fill", function(d) { return color(d.group); })
+          .call(d3.drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended));
 
         node.append("title")
-            .text(function(d) { return d.id; });
+            .text(function(d) { return d.id + " " + numCon[d.id]; });
 
         simulation
             .nodes(graph.nodes)
@@ -86,6 +93,14 @@
         }
       });
 
+      function zoomed() {
+        var zoomEvent = d3.event.transform;
+        console.log("translate: " + zoomEvent);
+        container.attr("transform", zoomEvent);
+      }
+
+      container.call(zoom);
+
       function dragstarted(d) {
         if (!d3.event.active) simulation.alphaTarget(0.3).restart();
         d.fx = d.x;
@@ -102,6 +117,7 @@
         d.fx = null;
         d.fy = null;
       }
+
     </script>     
   </body>
 </html>

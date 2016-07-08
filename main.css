@@ -15,3 +15,27 @@ div.bar {
   stroke: #fff;
   stroke-width: 1.5px;
 }
+
+svg {
+	position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dot circle {
+  fill: lightsteelblue;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.dot circle.dragging {
+  fill: red;
+  stroke: brown;
+}
+
+.axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+  vector-effect: non-scaling-stroke;
+}
